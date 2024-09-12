@@ -1,0 +1,9 @@
+127.0.0.1 - - [12/Sep/2024:14:35:35 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [12/Sep/2024:14:35:35 +0900] "GET /crowling/hello.html HTTP/1.1" 200 173
+0:0:0:0:0:0:0:1 - - [12/Sep/2024:14:35:35 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [12/Sep/2024:14:36:01 +0900] "GET /crowling/hello.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2024:14:36:02 +0900] "GET /crowling/hello.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2024:14:36:02 +0900] "GET /crowling/hello.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2024:14:36:02 +0900] "GET /crowling/hello.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2024:14:36:03 +0900] "GET /crowling/hello.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2024:14:36:03 +0900] "GET /crowling/hello.html HTTP/1.1" 304 -

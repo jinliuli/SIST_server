@@ -1,0 +1,30 @@
+package com.test.java;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+public class Ex02 {
+	
+	public static void main(String[] args) {
+		
+		try {
+			
+			String url = "https://serieson.naver.com/v3/movie/ranking/monthly";
+			
+			Document document = Jsoup.connect(url).get();
+			
+//			System.out.println(document.html());
+			
+			Elements list = document.select(".Title_title__s9o0D");
+			
+			System.out.println(list.size());
+			
+			list.forEach(title -> System.out.println(title.text()));
+			
+		} catch (Exception e) {
+			System.out.println("Ex02.main");
+			e.printStackTrace();
+		}
+	}
+}

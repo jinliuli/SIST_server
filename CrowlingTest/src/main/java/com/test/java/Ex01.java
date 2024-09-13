@@ -1,7 +1,5 @@
 package com.test.java;
 
-import javax.lang.model.element.Element;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;

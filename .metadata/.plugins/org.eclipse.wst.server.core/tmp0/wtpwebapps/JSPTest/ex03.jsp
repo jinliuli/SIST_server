@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String name = "홍길동";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +15,9 @@
 	
 	<p>내용</p>
 	<p>내용</p>
+	
+	<div>이름: <%= name %></div>
+	
 	<p>내용</p>
 	<p>내용</p>
 	<p>내용</p>

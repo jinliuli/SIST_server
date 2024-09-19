@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="http://bit.ly/3WJ5ilK">
+	<style>
+	
+	</style>
+</head>
+<body>
+	<!-- ex09_form.jsp -->
+	<h1>폼 입력 양식 테스트</h1>
+	
+	<!-- 폼 태그 사용: POST -->
+	<form method="GET" action="ex09_ok.jsp">
+	<table class="tbl">
+		<tr>
+			<th>텍스트 박스</th>
+			<td><input type="text" name="txt1"></td>
+		</tr>
+		<tr>
+			<th>암호 상자</th>
+			<td><input type="password" name="txt2"></td>
+		</tr>
+		<tr>
+			<th>다중 텍스트 박스</th>
+			<td><textarea name="txt3"></textarea></td>
+		</tr>
+		<tr>
+			<th></th>
+			<td></td>
+		</tr>
+	</table>
+	<div>
+		<input type="submit" value="보내기">
+	</div>
+	</form>
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script src="https://bit.ly/4cMuheh"></script>
+	<script>
+	
+	</script>
+</body>
+</html>

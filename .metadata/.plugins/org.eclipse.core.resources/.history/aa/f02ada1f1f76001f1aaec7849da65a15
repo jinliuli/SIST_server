@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//JSP 페이지
+	//- 상단 > 자바 코드
+	//- 하단 > HTML 코드
+	//이런 스타일 > JSP Model 1
+	
+	int a = 10;
+	String name = "홍길동";
+	String color = "cornflowerblue";
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="http://bit.ly/3WJ5ilK">
+	<style>
+	
+	</style>
+</head>
+<body>
+	<!-- ex05_scriptlet.jsp -->
+	<h1>스크립틀릿 + 표현식</h1>
+	
+	
+	
+	<div>숫자: <%= a %></div>
+	<div style="background-color: <%= color %>">이름: <%= name %></div>
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script src="https://bit.ly/4cMuheh"></script>
+	<script>
+	
+	</script>
+</body>
+</html>

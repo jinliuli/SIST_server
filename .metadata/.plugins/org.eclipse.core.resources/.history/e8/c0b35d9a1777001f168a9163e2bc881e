@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	
+	/*  
+		<form enctype="multipart/form-data">
+		- request.getParameter() > 동작 불가능	
+		- request.getParameterValues() > 동작 불가능	
+		
+		
+		cos.jar
+		- webapp > WEB-INF > lib 폴더에 붙여넣기하면 jar파일을 자동으로 빌드패스해줌
+		- MultipartRequest 클래스 > 기존의 request를 대신한다.
+		1. 기존의 request 객체를 Wrapping 한 객체
+			- getParameter() 동작 가능
+		2. 파일 업로드 처리
+		
+		
+	*/
+
+	//String txt = request.getParameter("txt");
+	//String num = request.getParameter("num");
+	
+	String txt = "";
+	String num = "";
+	
+	//1. 업로드
+	
+	
+%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="http://bit.ly/3WJ5ilK">
+	<style>
+	
+	</style>
+</head>
+<body>
+	<!-- ex19_ok.jsp -->
+	<h1>결과</h1>
+	
+	<div>
+		문자: <%= txt %>
+	</div>
+	
+	<div>
+		숫자: <%= num %>
+	</div>
+	
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script src="https://bit.ly/4cMuheh"></script>
+	<script>
+	
+	</script>
+</body>
+</html>

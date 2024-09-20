@@ -12,11 +12,12 @@
 </head>
 <body>
 	<!-- ex13_response_2.jsp -->
+	<h1>두번째 페이지</h1>
 	
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script src="https://bit.ly/4cMuheh"></script>
 	<script>
-	
+		
 	</script>
 </body>
 </html>

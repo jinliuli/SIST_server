@@ -1,5 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	/*  
+		첫번째 페이지 > (이동) > 두번째 페이지
+		
+		1. HTML
+		- <a href="">
+		- 사용자의 클릭 > 사용자 의지
+		- 클라이언트측 구현
+		
+		2. JavaXcript
+		- location.href = 'URL'
+		- 개발자의 코드 작성 > 자유롭게 통제 가능
+		- 클라이언트측 구현
+		
+		3. Servlet/JSP
+		- response.sendRedirect("URL")
+		- 서버측 구현
+		
+	*/
+	
+	System.out.println("시작");
+	response.sendRedirect("ex13_response_2.jsp");
+	System.out.println("끝");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +37,24 @@
 </head>
 <body>
 	<!-- ex13_response_1.jsp -->
+	<h1>첫번째 페이지</h1>
 	
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script src="https://bit.ly/4cMuheh"></script>
 	<script>
+		
+		/* 
+		console.log('시작');
+		location.href = 'ex13_response_2.jsp';
+		console.log('끝');
+		alert('끝'); 
+		*/
 	
 	</script>
 </body>
 </html>
+<%
+	System.out.println("바닥");
+%>
+
+

@@ -127,12 +127,13 @@
 	</div>
 	
 	<!--  
+		*** 사용권장
 		장점: 평범한 다운로드를 제공(모든 파일 다운로드, 이름 원본 유지)
 		단점: download.jsp 작성 비용 발생
 	-->
 	
 	<div>
-		<a href=""><%= orgfilename %></a>
+		<a href="download.jsp?filename=<%= filename%>&orgfilename=<%= orgfilename %>"><%= orgfilename %></a>
 	</div>
 	
 	<hr>

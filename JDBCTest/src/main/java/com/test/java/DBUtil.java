@@ -40,7 +40,6 @@ public class DBUtil {
 				
 			}
 			
-			
 		} catch (Exception e) {
 			System.out.println("DButil.close");
 			e.printStackTrace();

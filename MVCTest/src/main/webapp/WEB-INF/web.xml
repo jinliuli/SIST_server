@@ -19,6 +19,15 @@
 		<url-pattern>/hello.do</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>ex01</servlet-name>
+		<servlet-class>com.test.java.Ex01</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex01</servlet-name>
+		<url-pattern>/ex01.do</url-pattern>
+	</servlet-mapping>
+
 </web-app>
 
 

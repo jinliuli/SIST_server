@@ -47,19 +47,19 @@ public class Ex03_Statement {
 		
 		//*** 자바와 오라클은 아무 관계가 없다.
 		//- 자바는 오라클의 자료형이 뭔지 모른다.
-		System.out.printf("이름: ");
+		System.out.print("이름: ");
 		String name = scan.nextLine();
 			
-		System.out.printf("나이: ");
+		System.out.print("나이: ");
 		String age = scan.nextLine();
 		
-		System.out.printf("성별(m,f): ");
+		System.out.print("성별(m,f): ");
 		String gender = scan.nextLine();
 	
-		System.out.printf("전화번호: ");
+		System.out.print("전화번호: ");
 		String tel = scan.nextLine();
 		
-		System.out.printf("주소: ");
+		System.out.print("주소: ");
 		String address = scan.nextLine();
 		
 		String sql = String.format("insert into tblAddress (seq, name, age, gender, tel, address, regdate)" + "values (seqAddress.nextVal, '%s', %s, '%s', '%s', '%s', default)", name, age, gender, tel, address);

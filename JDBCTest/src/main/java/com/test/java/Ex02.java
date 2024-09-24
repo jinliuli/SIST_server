@@ -13,7 +13,7 @@ public class Ex02 {
 			
 			DBUtil util = new DBUtil();
 			
-			conn = util.open();
+			conn = DBUtil.open();
 			
 			System.out.println(conn.isClosed());//false
 			

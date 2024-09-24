@@ -44,7 +44,7 @@ create table tblJava (
 select * from tblJava;
 
 
---hr-----------------------------------------------------
+-- hr-----------------------------------------------------
 select * from tblInsa;
 select * from tblBonus;
 select * from tblAddress;
@@ -54,7 +54,7 @@ SELECT A.UNIQUENESS, B.* FROM ALL_INDEXES A, ALL_IND_COLUMNS B WHERE A.INDEX_NAM
 SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'TBLBONUS';
 
 
---server-----------------------------------------------------
+-- server-----------------------------------------------------
 -- Ex06_CallableStatement.java
 -- m1. 인자값X 반환값X
 create or replace procedure procM1
@@ -117,3 +117,6 @@ begin
     select * from tblInsa where buseo = pbuseo;
 end procM5;
 /
+
+drop PROCEDURE proM1;
+

@@ -54,6 +54,10 @@ SELECT A.UNIQUENESS, B.* FROM ALL_INDEXES A, ALL_IND_COLUMNS B WHERE A.INDEX_NAM
 SELECT * FROM ALL_CONSTRAINTS WHERE TABLE_NAME = 'TBLBONUS';
 
 
+
+
+
+
 -- server-----------------------------------------------------
 -- Ex06_CallableStatement.java
 -- m1. 인자값X 반환값X
@@ -117,6 +121,3 @@ begin
     select * from tblInsa where buseo = pbuseo;
 end procM5;
 /
-
-drop PROCEDURE proM1;
-

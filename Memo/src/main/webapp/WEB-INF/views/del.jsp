@@ -11,7 +11,7 @@
 	</style>
 </head>
 <body>
-	<!-- template.jsp -->
+	<!-- del.jsp -->
 	<div id="main">
 		<%@ include file="/WEB-INF/views/inc/header.jsp" %>
 		<div id="content">

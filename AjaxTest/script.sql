@@ -22,9 +22,9 @@ select * from tblSurvey;
 
 update tblSurvey set
     cnt1 = 5,
-    cnt2 = 3,
+    cnt2 = 7,
     cnt3 = 4,
-    cnt4 = 2
+    cnt4 = 5
     where seq = 1;
     
 commit;

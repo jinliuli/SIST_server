@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.lang.LinkageError"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="com.test.java.Ex05_PreparedStatement"/>
     <fullyQualifiedTypeName name="org.apache.catalina.startup.ConnectorCreateRule"/>
     <fullyQualifiedTypeName name="java.sql.CallableStatement"/>
@@ -18,7 +17,6 @@
     <fullyQualifiedTypeName name="java.lang.OutOfMemoryError"/>
     <fullyQualifiedTypeName name="oracle.jdbc.oracore.OracleType"/>
     <fullyQualifiedTypeName name="oracle.jdbc.OracleTypes"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.test.memo.repository.MemoDAO"/>
     <fullyQualifiedTypeName name="com.test.memo.model.MemoDTO"/>
     <fullyQualifiedTypeName name="javax.swing.text.Document"/>
@@ -40,8 +38,6 @@
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
     <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.beans.Statement"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
@@ -52,7 +48,16 @@
     <fullyQualifiedTypeName name="com.test.java.db.UserDTO"/>
     <fullyQualifiedTypeName name="javax.websocket.Session"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-    <fullyQualifiedTypeName name="com.test.ajax.AjaxDAO"/>
     <fullyQualifiedTypeName name="com.test.ajax.SurveyDTO"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.net.URLEncoder"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.atomic.AtomicBoolean"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="oracle.net.aso.l"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="com.test.ajax.AjaxDAO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="com.test.ajax.UserDTO"/>
 </qualifiedTypeNameHistroy>

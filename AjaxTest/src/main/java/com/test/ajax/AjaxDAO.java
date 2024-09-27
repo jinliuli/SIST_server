@@ -1,11 +1,14 @@
 package com.test.ajax;
 
-import java.beans.Statement;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.test.util.DBUtil;
+
+import oracle.net.aso.l;
 
 public class AjaxDAO {
 	
@@ -52,6 +55,91 @@ public class AjaxDAO {
 			e.printStackTrace();
 		}
 		
+		
+		return null;
+	}
+
+	public String getQuestion() {
+		
+		try {
+			
+			String sql = "select question from tblSurvey where seq = 1";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			if (rs.next()) {
+				return rs.getString("question");
+			}
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.getQuestion");
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
+
+	public int check(String id) {
+		
+		try {
+			
+			String sql = "select count(*) as cnt from tblUser where id = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, id);
+			
+			rs = pstat.executeQuery();
+			
+			if (rs.next()) {
+				return rs.getInt("cnt");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.check");
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+
+	public ArrayList<UserDTO> listUser() {
+		
+		try {
+			String sql = "select * from tblUser";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<UserDTO> list = new ArrayList<UserDTO>();
+			
+			//rs > (복사) > list
+			while (rs.next()) {
+				
+				//레코드 1줄 > UserDTO 1개
+				UserDTO dto = new UserDTO();
+				
+				//한개씩 가져오기
+				dto.setId(rs.getString("id"));
+				dto.setPw(rs.getString("pw"));
+				dto.setName(rs.getString("name"));
+				dto.setLv(rs.getString("lv"));
+				
+				//list에 담기
+				list.add(dto);
+				
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.listUser");
+			e.printStackTrace();
+		}
 		
 		return null;
 	}

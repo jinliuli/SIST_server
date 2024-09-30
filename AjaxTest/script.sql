@@ -68,3 +68,6 @@ rollback;
 
 truncate table tblAddress;--롤백불가
 --insert into tblAddress values (seqAddress.nextVal, '홍홍홍', 30, 'm', '010-1111-2222', '서울시강서구',  default);
+
+delete from tblAddress where seq = 24;
+desc tblAddress;

@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 @WebServlet("/ex06data.do")
 public class Ex06Data extends HttpServlet {
 
@@ -34,10 +37,138 @@ public class Ex06Data extends HttpServlet {
 			m6(req, resp);			
 		}
 		
+		
+		//JSON 라이브러리 jar파일 사용하는 예제 > //ex06data.do?type=10
+		AjaxDAO dao = new AjaxDAO();
+		ArrayList<UserDTO> list = dao.listUser();
+		
+		resp.setContentType("application/json"); 
+		resp.setCharacterEncoding("UTF-8");
+		
+		PrintWriter writer = resp.getWriter();
+		
+		//JSONObject > JSON Object
+		//JSONArray > JSON Array
+		
+		//질문 > m5
+		/*
+		{
+			"question": "제목",
+			"name": "홍길동",
+			"age": "20"
+		}
+		*/
+//		JSONObject obj = new JSONObject();
+//		obj.put("question", "제목입니다.");
+//		obj.put("name", "홍길동");
+//		obj.put("age", "20");
+//		
+//		System.out.println(obj.toString());
+		//"question":"제목입니다.","name":"홍길동","age":"20"}
+		
+		JSONArray arr = new JSONArray();
+		
+		for (UserDTO dto : list) {
+			
+			//UserDTO > JSONObject
+			JSONObject obj = new JSONObject();
+			obj.put("id", dto.getId());
+			obj.put("pw", dto.getPw());
+			obj.put("name", dto.getName());
+			obj.put("lv", dto.getLv());
+			
+			arr.add(obj);
+			
+		}
+		
+		System.out.println(arr.toString());
+		/*
+		 * [{"pw":"1111","name":"홍길동","lv":"1","id":"hong"},
+		 *  {"pw":"1111","name":"강아지","lv":"1","id":"dog"},
+		 *  {"pw":"1111","name":"고양이","lv":"2","id":"cat"}]
+		 * */
+		
+		writer.close();
+		
 	}
 
 	private void m6(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
+			//JSON 반환 + 다중값
+			/*
+					
+					hong,1111,홍길동,1
+					dog,1111,강아지,1
+					cat,1111,고양이,2
+					
+					[
+						{
+							"id": "hong",
+							"pw": "1111",
+							"name": "홍길동",
+							"lv": "1"
+						},
+						{
+							"id": "hong",
+							"pw": "1111",
+							"name": "홍길동",
+							"lv": "1"
+						}
+					]
+					
+				*/
+				
+				AjaxDAO dao = new AjaxDAO();
+				ArrayList<UserDTO> list = dao.listUser();
+				
+				//ArrayList<UserDTO> > (변환+문자열) > JSON 객체 배열
+				resp.setContentType("application/json"); 
+				resp.setCharacterEncoding("UTF-8");
+				
+				PrintWriter writer = resp.getWriter();
+				
+//				writer.println("[");
+//				
+//				int i = 0;
+//				
+//				for (UserDTO dto : list) {
+//					writer.println("{");
+//					writer.printf("\"id\": \"%s\",", dto.getId());
+//					writer.printf("\"pw\": \"%s\",", dto.getPw());
+//					writer.printf("\"name\": \"%s\",", dto.getName());
+//					writer.printf("\"lv\": \"%s\"", dto.getLv());
+//					writer.println("}");
+//					
+//					if (i < list.size() - 1) {
+//						writer.println(",");
+//					}
+//					i++;
+//				}		
+//				
+//				writer.println("]");
+				
+				
+				//JSON 라이브러리 사용
+				JSONArray arr = new JSONArray();
+				
+				for (UserDTO dto : list) {
+					
+					//UserDTO > JSONObject
+					JSONObject obj = new JSONObject();
+					obj.put("id", dto.getId());
+					obj.put("pw", dto.getPw());
+					obj.put("name", dto.getName());
+					obj.put("lv", dto.getLv());
+					
+					arr.add(obj);
+					
+				}
+				writer.print(arr);
+				
+				
+				writer.close();
+				
+
 		
 	}
 	

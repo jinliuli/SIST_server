@@ -28,5 +28,43 @@ update tblSurvey set
     where seq = 1;
     
 commit;
-    
-    
+
+
+
+
+--고양이 테이블
+create table tblCat (
+    catid varchar2(50) primary key,
+    left number not null,
+    top number not null
+);
+
+insert into tblCat values ('cat1', 0, 0);
+
+
+select * from tblCat;
+--cat1	150	483
+--cat1	363	146
+commit;
+
+
+delete from tblCat;
+commit;    
+
+select max(to_number(substr(catid, 4))) from tblCat;
+
+
+
+desc tblAddress;
+
+
+--테이블의 데이터 삭제하기
+--1. delete
+--2. truncate = delete + commit
+--3. drop
+select * from tblAddress;
+delete from tblAddress;
+rollback;
+
+truncate table tblAddress;--롤백불가
+--insert into tblAddress values (seqAddress.nextVal, '홍홍홍', 30, 'm', '010-1111-2222', '서울시강서구',  default);

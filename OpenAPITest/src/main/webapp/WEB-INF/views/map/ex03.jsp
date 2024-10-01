@@ -68,6 +68,7 @@
 			});
 			
 			m1.setImage(mTag);
+			m1.setTitle(`\${evt.latLng.getLat()},\${evt.latLng.getLng()}`);
 			m1.setMap(map);
 			
 		});

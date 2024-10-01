@@ -1,6 +1,7 @@
 package com.test.api.map;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,8 +26,13 @@ public class Ex01 extends HttpServlet {
 		if (n == null) n = "ex01";
 		
 		
+		if (n.equals("ex04")) {
+			MapDAO dao = new MapDAO();
+			ArrayList<MapDTO> list = dao.list();
+			req.setAttribute("list", list);
+		}
 		
-
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/map/" + n + ".jsp");
 		dispatcher.forward(req, resp);
 	}

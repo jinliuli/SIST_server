@@ -34,3 +34,43 @@ insert into tblMarker values (seqMarker.nextVal, 37.498982, 127.032267);
 
 select * from tblMarker;
 commit;
+
+--Food
+create table tblCategory (
+    seq number primary key,         --PK
+    name varchar2(100) not null,    --카테고리명(한식,중식,카페 등)
+    img varchar2(100) not null      --카테고리별 마커 이미지
+);
+
+insert into tblCategory values (1, '한식', 'heart.png');
+insert into tblCategory values (2, '양식', 'harbor.png');
+insert into tblCategory values (3, '중식', 'library.png');
+insert into tblCategory values (4, '일식', 'favorite.png');
+insert into tblCategory values (5, '분식', 'theater.png');
+insert into tblCategory values (6, '패스트푸드', 'restaurant.png');
+insert into tblCategory values (7, '음료', 'town-hall.png');
+insert into tblCategory values (8, '편의점/마트', 'hospital.png');
+insert into tblCategory values (9, '기타', 'forest.png');
+
+drop table tblFood;
+drop sequence seqFood;
+
+create table tblFood (
+    seq number primary key,     --PK
+    name varchar2(300) not null,--장소명
+    lat number not null,        --위도
+    lng number not null,        --경도
+    category number not null references tblCategory(seq), --카테고리(FK)
+    address varchar2(500) null, --주소
+    star number(1) not null,    --별점
+    menu varchar2(100) null     --추천메뉴
+);
+create sequence seqFood;
+
+
+
+commit;
+
+select * from tblCategory;
+select * from tblFood;
+

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.test.java.DBUtil"/>
-    <fullyQualifiedTypeName name="java.lang.OutOfMemoryError"/>
-    <fullyQualifiedTypeName name="oracle.jdbc.oracore.OracleType"/>
-    <fullyQualifiedTypeName name="oracle.jdbc.OracleTypes"/>
     <fullyQualifiedTypeName name="com.test.memo.repository.MemoDAO"/>
     <fullyQualifiedTypeName name="com.test.memo.model.MemoDTO"/>
     <fullyQualifiedTypeName name="javax.swing.text.Document"/>
@@ -47,17 +43,21 @@
     <fullyQualifiedTypeName name="com.test.ajax.CatDTO"/>
     <fullyQualifiedTypeName name="com.test.ajax.AddressDTO"/>
     <fullyQualifiedTypeName name="netscape.javascript.JSObject"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="com.test.ajax.AjaxDAO"/>
     <fullyQualifiedTypeName name="java.net.URLEncoder"/>
     <fullyQualifiedTypeName name="java.net.URL"/>
     <fullyQualifiedTypeName name="com.test.api.BookDAO"/>
     <fullyQualifiedTypeName name="org.json.simple.parser.JSONParser"/>
-    <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
-    <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="com.test.api.BookDTO"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="com.test.api.map.MapDTO"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="com.test.api.map.MapDAO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.test.api.food.FoodDTO"/>
+    <fullyQualifiedTypeName name="com.test.api.food.CategoryDTO"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 </qualifiedTypeNameHistroy>

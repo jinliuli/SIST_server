@@ -16,17 +16,12 @@
 </head>
 <body>
 	<!-- ex01.jsp -->
-	<h1>Kakao Map</h1>
+	<h1>Kakao Map </h1>
 	
 	<div>
 		<div id="map"></div>
 	</div>
 	
-	<!-- 
-	이전에는 다른 언어도생길수 있겠다고하여 만들어진 흔적 지금은 안씀 
-	<style type="text/css"></style>
-	<script type="text/vscript"></script>
-	-->
 	
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef00a9579c4de664a8dcf691494c9b70"></script>
@@ -46,5 +41,11 @@
 		var map = new kakao.maps.Map(container, options);
 	
 	</script>
+	
+	<!-- 
+	이전에는 다른 언어도생길수 있겠다고하여 만들어진 흔적 지금은 안씀 
+	<style type="text/css"></style>
+	<script type="text/vscript"></script>
+	-->
 </body>
 </html>

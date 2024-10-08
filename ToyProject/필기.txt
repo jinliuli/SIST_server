@@ -1,0 +1,107 @@
+새 프로젝트
+- "ToyProject" > "toy" + web.xml(O)
+
+1. 주제
+	- 기본 업무 구현
+
+2. 요구분석
+	- 회원 관리
+	- 게시판 구현(***)
+	- 기타 등등
+
+3. 페이지 구성(관계도)
+	- toy.drawio
+		
+4. 화면 설계
+	- 생략
+
+5. 스토리보드
+	- 생략
+
+6. 데이터베이스
+	- ERD
+
+7. 스크립트
+	- DDL, DML
+	- 기초 데이터 / 더미 데이터
+	- ToyProject > "script.sql"
+	
+8. 구현
+	- 패키지
+		- "com.test.toy": 메인 패키지
+			- "Index.java": 시작 페이지
+			- "Template.java": 템플릿 페이지
+		- "com.test.toy.user": 회원
+			- "Register.java": 회원 가입
+			- "Unregister.java": 회원 탈퇴
+			- "Login.java": 로그인
+			- "Logout.java": 로그아웃
+		- "com.test.toy.user.repository": DB(DAO)
+			- "UserDAO.java"
+		- "com.test.toy.user.model": DB(DTO)
+			- "UserDTO.java"
+	- 뷰(webapp > WEB-INF>
+		- "views"
+			- "index.jsp"
+			- "template.jsp"
+		- views > "user"
+					- "register.jsp"
+					- "unregistger.jsp"
+					- "login.jsp"
+					- "logout.jsp"
+	- 공통 요소 & 리소스
+		- views > "inc"
+					- "asset.jsp"
+					- "header.jsp"
+		- webapp > "asset"
+						> "css"
+							- "main.css"
+						> "js"
+							- "main.js"
+						> "pic"
+	- 라이브러리
+		- lib
+			- ojdbc6.jar
+			- util.jar
+			- jstl-1.2.jar
+			- cos.jar
+			- json-simple.jar
+			- lombok.jar
+			
+	- 패키지
+		- "com.test.toy.filter"
+			- "EncodingFilter.java"
+		
+		- "com.test.toy.test"
+			- "DAOTest.java"
+		
+		- "com.test.toy.util"
+			- "OutputUtil.java"
+			
+			
+			
+			
+				
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

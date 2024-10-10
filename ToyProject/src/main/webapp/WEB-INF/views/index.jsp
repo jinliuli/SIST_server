@@ -19,7 +19,7 @@
 		
 		<p>시작 페이지입니다.</p>
 		
-		${empty auth} - ${auth}
+		<%-- ${empty auth} - ${auth} --%>
 		
 	</div>
 	

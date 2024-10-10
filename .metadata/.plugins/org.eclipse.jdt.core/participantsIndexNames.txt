@@ -23,6 +23,8 @@ C:\class\code\server\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\10948
 \AuthTest\src\main\java
 C:\class\code\server\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2554342885.index
 \OpenAPITest\src\main\java
+C:\class\code\server\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2707467932.index
+\ToyProject\src\main\java
 C:\class\code\server\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1075875009.index
 \CrowlingTest\src\main\java
 C:\class\code\server\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3839954045.index

@@ -29,3 +29,76 @@ commit;
 
 --로그인
 --select * from tblUser where id = ? pw = ?;
+
+
+
+
+
+
+-- 게시판 테이블
+create table tblBoard (
+    seq number primary key,                         --글번호(PK)
+    subject varchar2(300) not null,                 --제목
+    content varchar2(4000) not null,                --내용
+    regdate date default sysdate not null,          --날짜
+    readcount number default 0 not null,            --조회수
+    id varchar2(50) not null references tblUser(id) --아이디(FK)
+);
+
+create sequence seqBoard;
+
+select * from tblBoard;
+
+--drop table tblBoard;
+--drop sequence seqBoard;
+
+commit;
+
+
+
+-- 작성날짜 or 작성시간함수
+--1. 조회시각이 오늘과 같은 날짜면 > 시간 반환
+--2. 조회 시각이 오늘과 다른 날짜면  > 날짜 반환
+create or replace function fnRegdate (
+    regdate date
+) return varchar2
+is
+begin
+
+    if to_char(sysdate, 'yyyy-mm-dd') = to_char(regdate, 'yyyy-mm-dd') then
+        return to_char(regdate, 'hh24:mi:ss');
+    else
+        return to_char(regdate, 'yyyy-mm-dd');
+    end if;
+
+end fnRegdate;
+/
+
+--select to_char(regdate, 'hh24:mi:ss') from tblBoard;
+select fnRegdate(regdate) from tblBoard order by seq desc;
+
+
+--system으로 실행
+alter user toy default tablespace users;
+
+
+
+select * from tblBoard order by seq desc;
+
+update tblBoard set regdate = regdate - 1 where seq = 5;
+update tblBoard set regdate = regdate - 2.5 where seq = 2;
+update tblBoard set regdate = regdate - 5 where seq = 1;
+
+
+create or replace view vwBoard
+as
+select 
+    tblBoard.*, fnRegdate(regdate) as regtime, 
+    (select name from tblUser where id = tblBoard.id) as name,
+    (sysdate - regdate) as isnew
+from tblBoard 
+    order by seq desc;
+
+vwBoard
+
+

@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Disabled"/>
+    <fullyQualifiedTypeName name="com.test.toy.user.model.UserDTO"/>
+    <fullyQualifiedTypeName name="com.test.toy.util.OutputUtil"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="com.test.toy.user.repository.UserDAO"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
+</qualifiedTypeNameHistroy>

@@ -56,3 +56,29 @@
 	text-align: center;
 }
 
+
+
+/* 페이지바 */
+#pagebar {
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+
+/* 댓글 */
+#comment td:nth-child(1) { width: auto; }
+#comment td:nth-child(2) { width: 150px; text-align: center; }
+#comment td:nth-child(1) div:last-child { font-size: 12px; text-align: right; }
+
+#addComment td:nth-child(1) { width: auto; }
+#addComment td:nth-child(2) { width: 150px; text-align: center; }
+
+#comment span { cursor: pointer; }
+#comment span:hover { color: cornflowerblue; }
+
+
+
+
+
+
+

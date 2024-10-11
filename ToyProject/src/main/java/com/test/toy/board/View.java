@@ -20,20 +20,23 @@ public class View extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//1. 데이터 가져오기(seq)
-		//2. DB작업 > select 
+		//2. DB 작업 > select
 		//3. 결과(DTO) > JSP 호출하기
 		
 		HttpSession session = req.getSession();
 		
-		
 		//1.
 		String seq = req.getParameter("seq");
+		String word = req.getParameter("word");
+		String column = req.getParameter("column");
+		String page = req.getParameter("page");
 		
 		//2.
 		BoardDAO dao = BoardDAO.getInstance();
 		
-		//2.3 게시글 안에서 조회수 증가가 바로 보임
-		if (session.getAttribute("read") != null && session.getAttribute("read").toString().equals("n")) {
+		//2.3 조회수 증가
+		if (session.getAttribute("read") != null &&
+				session.getAttribute("read").toString().equals("n")) {
 			dao.updateReadcount(seq);
 			session.setAttribute("read", "y");
 		}
@@ -41,22 +44,52 @@ public class View extends HttpServlet {
 		BoardDTO dto = dao.get(seq);
 		
 		
-		//2.5 DTO 글내용 조작
+		//2.5 DTO 조작
+		
+		//개행문자 처리
 		String content = dto.getContent();
 		content = content.replace("\r\n", "<br>");
+		
+		
+		if (column.equals("content")) {
+			//검색어 강조
+			//"한승원 작가는 11일 방송된"
+			// > "<span style='color:tomato;background-color:gold;'>한승원</span> 작가는 11일 방송된"
+			content = content.replace(word, "<span style='color:tomato;background-color:gold;'>" + word + "</span>");
+		}
+		
 		dto.setContent(content);
-		
-		
-//		//2.7 여기에 코드를 작성하면 목록에서만 조회수 증가가 바로 보임
-//		dao.updateReadcount(seq);
-		
 		
 		
 		//3.
 		req.setAttribute("dto", dto);
-		
+		req.setAttribute("column", column);
+		req.setAttribute("word", word);
+		req.setAttribute("page", page);
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/view.jsp");
 		dispatcher.forward(req, resp);
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

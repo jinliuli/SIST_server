@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,27 +30,45 @@ public class ListComment extends HttpServlet {
 		
 		JSONArray arr = new JSONArray();
 		
-		for (CommentDTO dto : list) {
-			
-			JSONObject obj = new JSONObject();
-			obj.put("seq", dto.getSeq());
-			obj.put("content", dto.getContent());
-			obj.put("regdate", dto.getRegdate());
-			obj.put("id", dto.getId());
-			obj.put("bseq", dto.getBseq());
-			obj.put("name", dto.getName());
-			
-			arr.add(obj);
-			
+		if (list != null && list.size() > 0) {
+			for (CommentDTO dto : list) {
+				
+				JSONObject obj = new JSONObject();
+				obj.put("seq", dto.getSeq());
+				obj.put("content", dto.getContent());
+				obj.put("regdate", dto.getRegdate());
+				obj.put("id", dto.getId());
+				obj.put("bseq", dto.getBseq());
+				obj.put("name", dto.getName());
+				
+				arr.add(obj);
+				
+			}
 		}
 		
 		resp.setContentType("application/json");
 		
 		PrintWriter writer = resp.getWriter();
 		writer.print(arr.toString());
-		writer.close();
-		
+		writer.close();		
 		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

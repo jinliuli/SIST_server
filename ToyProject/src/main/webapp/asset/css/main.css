@@ -24,6 +24,7 @@
 }
 
 
+
 /* 게시판 > 목록보기 */
 #list th:nth-child(1) { width: 50px; }
 #list th:nth-child(2) { width: auto; }
@@ -33,11 +34,25 @@
 
 #list td { text-align: center; }
 #list td:nth-child(2) { text-align: left; }
+
 #list .isnew { font-size: 14px; color: tomato; }
+
+#list .commentCount { font-size: 12px; }
+#list .commentCount span { font-size: 15px; }
+
 
 
 /* 게시판 > 상세보기 */
 #view tr:nth-child(4) { height: 200px; }
+
+#view #imgPlace { max-width: 570px; border: 1px solid #CCC; }
+
+#view #map { width: 570px; height: 300px; border: 1px solid #CCC; }
+
+#view #goodbad { display: flex; align-items: center; }
+
+#view #goodbad span:nth-child(odd) { margin-right: 3px; cursor: pointer; }
+#view #goodbad span:nth-child(even) { margin-right: 10px; }
 
 /* 게시판 > 검색 */
 #searchForm {
@@ -51,11 +66,10 @@
 	height: 35px;
 }
 
-#labelSearchReault {
+#labelSearchResult {
 	margin: .5rem;
 	text-align: center;
 }
-
 
 
 /* 페이지바 */
@@ -75,6 +89,13 @@
 
 #comment span { cursor: pointer; }
 #comment span:hover { color: cornflowerblue; }
+
+
+
+
+
+
+
 
 
 

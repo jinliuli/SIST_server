@@ -20,9 +20,18 @@ public class EncodingFilter implements Filter {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		
-		//그다음 요청으로 넘어가기(다음필터 or 서블릿 호출)
+		//그다음 요청으로 넘어가기(다음 필터 or 서블릿 호출)
 		chain.doFilter(req, resp);
 		
 	}
 	
 }
+
+
+
+
+
+
+
+
+

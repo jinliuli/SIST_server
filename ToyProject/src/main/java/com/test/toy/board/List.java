@@ -47,8 +47,6 @@ public class List extends HttpServlet {
 		map.put("search", search);
 		
 		
-		
-		//---------------------------------------------------------
 		//페이징
 		//- list.do?page=1 > begin(1) end(10)
 		//- list.do?page=2 > begin(11) end(20)
@@ -151,8 +149,6 @@ public class List extends HttpServlet {
 		
 
 		
-		
-		//---------------------------------------------------------
 		//1. DB 작업 > select
 		//2. 결과셋 > JSP 호출하기
 		
@@ -180,6 +176,12 @@ public class List extends HttpServlet {
 			}
 			
 			dto.setSubject(subject);
+			
+			
+			//HTML 태그 이스케이프
+			subject = subject.replace("<", "&lt;").replace(">", "&gt;");
+			dto.setSubject(subject);
+			
 		}
 		
 		//2.

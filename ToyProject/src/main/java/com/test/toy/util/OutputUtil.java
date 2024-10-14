@@ -18,17 +18,18 @@ public class OutputUtil {
 		
 	}
 	
-	
 	public static void redirect(HttpServletResponse resp, String msg, String url) throws IOException {
 		
 		PrintWriter writer = resp.getWriter();
 		writer.print("<html><head><meta charset='UTF-8'></head><body><script>");
 		writer.printf("alert('%s');", msg);
 		writer.printf("location.href='%s';", url);
-		writer.print("history.back();");
 		writer.print("</script></body></html>");
 		writer.close();
 		
 	}
-
+	
 }
+
+
+

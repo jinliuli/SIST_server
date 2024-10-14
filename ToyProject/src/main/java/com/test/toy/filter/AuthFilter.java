@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.test.toy.util.OutputUtil;
 
 public class AuthFilter implements Filter {
-	
+
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
@@ -24,29 +24,40 @@ public class AuthFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse)resp;
 		HttpSession session = request.getSession();
 		
-		//System.out.println("현재 접속자:" + (session.getAttribute("auth") == null ? "익명 사용자" : session.getAttribute("auth")));
+		//System.out.println("현재 접속자: " + (session.getAttribute("auth") == null ? "익명 사용자" : session.getAttribute("auth")));
 		
-		///toy/board/list.do
+		//-/toy/board/list.do
 		//System.out.println(request.getRequestURI());
+		
 		
 		//익명 사용자 배제
 		if (session.getAttribute("auth") == null) {
-			
+		
 			//- 글쓰기, 수정하기, 삭제하기, 자기정보
 			if (request.getRequestURI().endsWith("/board/add.do")
-					||request.getRequestURI().endsWith("/board/edit.do")
-					||request.getRequestURI().endsWith("/board/del.do")
-					||request.getRequestURI().endsWith("/user/info.do")) {
+				|| request.getRequestURI().endsWith("/board/edit.do")
+				|| request.getRequestURI().endsWith("/board/del.do")
+				|| request.getRequestURI().endsWith("/user/info.do")) {
 				
-				
-				OutputUtil.redirect(response, "익명 사용자는 접근 권한이 없습니다.", "/toy/index.do");
+				OutputUtil.redirect(response, "익명 사용자는 접근이 불가능합니다.", "/toy/index.do");
 				
 			}
 			
-		}
+		}		
 		
 		chain.doFilter(req, resp);
 		
 	}
-	
+
 }
+
+
+
+
+
+
+
+
+
+
+

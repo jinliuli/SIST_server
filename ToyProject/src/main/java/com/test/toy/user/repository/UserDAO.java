@@ -1,10 +1,10 @@
 package com.test.toy.user.repository;
 
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.test.toy.user.model.UserDTO;
 import com.test.util.DBUtil;
@@ -23,20 +23,17 @@ public class UserDAO {
 //		this.conn = DBUtil.open("localhost", "toy", "java1234");
 //	}
 	
-	//private메소드는 객체를 못만들게함
 	private UserDAO() {
 		this.conn = DBUtil.open("localhost", "toy", "java1234");
-		
 	}
 	
 	public static UserDAO getInstance() {
 		
 		if (dao == null) {
-			dao = new UserDAO(); 
+			dao = new UserDAO();
 		}
 		
-		return dao;
-		
+		return dao;		
 	}
 
 	public int register(UserDTO dto) {
@@ -62,10 +59,9 @@ public class UserDAO {
 		return 0;
 	}
 
-
 	public int unregister(String id) {
-
-		// queryParamNoReturn
+		
+		//queryParamNoReturn
 		try {
 
 			String sql = "update tblUser set pw = '0000', name = '탈퇴', email = '탈퇴', pic = default, intro = null, ing = 0 where id = ?";
@@ -78,9 +74,10 @@ public class UserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return 0;
 	}
+	
 	
 	//로그인
 	public UserDTO login(UserDTO dto) {
@@ -115,12 +112,12 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		
-		return null;	
+		return null;		
 	}
 
 	public ArrayList<UserDTO> listUser() {
 		
-		//queryNoParameListReturn
+		//queryNoParamListReturn
 		try {
 			
 			String sql = "select * from tblUser where ing = 1";
@@ -147,24 +144,25 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		
+		
 		return null;
 	}
-
-	// 아이디 > 회원 정보 가져오기
+	
+	//아이디 > 회원 정보 가져오기
 	public UserDTO getUser(String id) {
-
-		// queryParamDTOReturn
+		
+		//queryParamDTOReturn
 		try {
-
+			
 			String sql = "select * from tblUser where id = ?";
-
+			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, id);
-
+			
 			rs = pstat.executeQuery();
-
+			
 			if (rs.next()) {
-
+				
 				UserDTO dto = new UserDTO();
 				dto.setId(rs.getString("id"));
 				dto.setName(rs.getString("name"));
@@ -174,15 +172,26 @@ public class UserDAO {
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setIng(rs.getString("ing"));
 				dto.setIntro(rs.getString("intro"));
-
-				return dto;
-			}
-
+				
+				return dto;				
+			}	
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return null;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+

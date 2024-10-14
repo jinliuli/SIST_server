@@ -1,7 +1,9 @@
 //webapp > asset > js > main.js
 
 //댓글 쓰기
-$(document).ready(()=>{
+
+//$(document).ready(()=>{
+window.onload = () => {
 	
 	$('#btnAddComment').click(()=>{
 		
@@ -36,8 +38,6 @@ $(document).ready(()=>{
 	
 	//댓글 목록가져오기
 	function loadComment() {
-	
-		//${lv};
 		
 		$.ajax({
 			type: 'GET',
@@ -55,19 +55,21 @@ $(document).ready(()=>{
 					let temp = `
 					<tr data-seq="${item.seq}">
 						<td>
-							<div>${item.content}</div>
+							<div>${item.content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
 							<div>${item.regdate}</div>
 						</td>
 						<td>
 							<div>
 								<div>${item.name}(${item.id})</div>`;
-					//익명사용자는 댓글 삭제/수정이 안보이도록 !!
-					if (lv != 0 && (auth == item.id || lv == 2)) {
-					temp += `<div>
+					
+					if (lv != 0 && (auth == item.id || lv == 2)) {		
+					
+					temp += 	`<div>
 									<span class="material-symbols-outlined" onclick="delComment(${item.seq});">delete</span>
 									<span class="material-symbols-outlined" onclick="editComment(${item.seq});">edit_note</span>
 								</div>`;
 					}
+						
 					temp += `</div>
 						</td>
 					</tr>
@@ -75,6 +77,7 @@ $(document).ready(()=>{
 					`;
 					
 					$('#comment tbody').append(temp);
+					
 				});
 				
 			},
@@ -88,25 +91,115 @@ $(document).ready(()=>{
 	loadComment();
 	
 	
-	//엔터치면 댓글쓰기
 	$('#addComment input[name=content]').keydown((evt)=>{
 		if (evt.keyCode == 13) {
 			$('#btnAddComment').click();
 		}
 	});
 	
-});//ready
-
-
+	
+	//좋아요
+	$('#btnGood').click(()=>{
+		
+		$.ajax({
+			type: 'POST',
+			url: '/toy/board/goodbad.do',
+			data: {
+				state: 1,
+				bseq: $(event.target).data('seq')
+			},
+			dataType: 'json',
+			success: function(result) {
+				//alert(result.result);
+				loadGoodBad();
+			},
+			error: function(a,b,c) {
+				console.log(a,b,c);
+			}
+		});
+		
+	});
+	
+	$('#btnBad').click(()=>{
+		
+		$.ajax({
+			type: 'POST',
+			url: '/toy/board/goodbad.do',
+			data: {
+				state: 0,
+				bseq: $(event.target).data('seq')
+			},
+			dataType: 'json',
+			success: function(result) {
+				//alert(result.result);
+				loadGoodBad();
+			},
+			error: function(a,b,c) {
+				console.log(a,b,c);
+			}
+		});
+		
+	});
+	
+	
+	function loadGoodBad() {
+		
+		$.ajax({
+			type: 'GET',
+			url: '/toy/board/loadgoodbad.do',
+			data: {
+				bseq: seq
+			},
+			dataType: 'json',
+			success: function(result) {
+				//console.log(result);
+				
+				//alert(result.state);
+				if (result.state == '1') {
+					$('#btnGood').css('color', 'cornflowerblue');
+					$('#btnBad').css('color', '#555');
+				} else if (result.state == '0') {
+					$('#btnBad').css('color', 'tomato');
+					$('#btnGood').css('color', '#555');
+				}
+				
+				
+				$('#good').text(0);
+				$('#bad').text(0);
+				
+				
+				
+				$(result.arr).each((index,item)=>{
+					
+					//{cnt: '2', state: '1'}
+					if (item.state == '1') {
+						$('#good').text(item.cnt);
+					} else if (item.state == '0') {
+						$('#bad').text(item.cnt);
+					}  
+					
+				});
+				
+				
+			},
+			error: function(a,b,c) {
+				console.log(a,b,c);
+			}
+		});
+		
+	}
+	
+	loadGoodBad();
+	
+};//ready
 
 
 function delComment(cseq) {
-	//alert(cseq);
 	
 	if (!confirm('정말 삭제하겠습니까?')) { return; }
 	
-	const tr = $(event.target).parent('tr');
-	//alert(tr); //[object Object]
+	
+	const tr = $(event.target).parents('tr');
 	//alert(tr[0].nodeName);
 	
 	$.ajax({
@@ -119,12 +212,12 @@ function delComment(cseq) {
 		success: function(result) {
 			
 			if (result.result == 1) {
-				//alert('삭제 성공');
-				//alert(event.target); //[object XMLHttpRequest] > ajax객체입니다
+				//alert('성공');
+				//alert(event.target);
 				tr.remove();
 				
 			} else {
-				alert('댓글 삭제 실패 ㅠㅠ');
+				alert('댓글 삭제 실패;;');
 			}
 			
 		},
@@ -133,7 +226,10 @@ function delComment(cseq) {
 		}
 	});
 	
-}
+} 
+
+
+let temp_content;
 
 function editComment(cseq) {
 	
@@ -149,14 +245,14 @@ function editComment(cseq) {
 	
 	const div = $(event.target).parents('tr').children().eq(0).children().eq(0);
 	const content = div.text();
+	temp_content = content;
 	const seq = $(event.target).parents('tr').data('seq');
+	
 	div.html('');
 	
 	$('<input type="text" style="width: 535px;">')
 		.val(content)
 		.keydown((evt)=>{
-			//alert(evt.keyCode); //ESC > 27
-			
 			if (evt.keyCode == 13) {
 				
 				const txt = evt.target;
@@ -169,36 +265,47 @@ function editComment(cseq) {
 						seq: seq
 					},
 					dataType: 'json',
-					sucess: function(result) {
+					success: function(result) {
 						
 						if (result.result == 1) {
-							let item = $(txt).parents('tr');
 							
+							let item = $(txt).parents('tr');
+				
 							const content = $(item).children().eq(0).children().eq(0).children().eq(0).val();
 							$(item).children().eq(0).children().eq(0).html('');
-							$(item).children().eq(0).children().eq(0).text(content);
+							$(item).children().eq(0).children().eq(0).text(content);					
+
 						} else {
-							alert('댓글 수정 실패;;')
+							alert('댓글 수정 실패;;');
 						}
 						
 					},
-					error: function(a,b,c){
+					error: function(a,b,c) {
 						console.log(a,b,c);
 					}
 				});
 				
 			} else if (evt.keyCode == 27) {
 				
-				//수정누르고 포커스가 댓글에 가있을떄 ESC누르면 취소됨
 				let item = $(evt.target).parents('tr');
-								
-				const content = $(item).children().eq(0).children().eq(0).children().eq(0).val();
+				
 				$(item).children().eq(0).children().eq(0).html('');
-				$(item).children().eq(0).children().eq(0).text(content);
+				$(item).children().eq(0).children().eq(0).text(temp_content);
 			}
-			
 		})
 		.appendTo(div);
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -20,15 +20,13 @@ public class Login extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		//테스트 후 삭제 예정
 		UserDAO dao = UserDAO.getInstance();
 		
 		ArrayList<UserDTO> list = dao.listUser();
 		
 		req.setAttribute("list", list);
-		
-		
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/login.jsp");
 		dispatcher.forward(req, resp);
@@ -36,9 +34,8 @@ public class Login extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
 		
-		//LoginOK.java
+		//LoginOk.java
 		//1. 데이터 가져오기
 		//2. DB 작업 > select
 		//3. 결과 처리(인증 티켓 발급)
@@ -74,7 +71,15 @@ public class Login extends HttpServlet {
 			OutputUtil.redirect(resp, "로그인 실패");
 		}
 		
-		
 	}
 
 }
+
+
+
+
+
+
+
+
+

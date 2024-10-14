@@ -10,7 +10,14 @@ public class CommentDTO {
 	private String regdate;
 	private String id;
 	private String bseq;
-
-	private String name; //작성자 이름
+	
+	private String name;
 	
 }
+
+
+
+
+
+
+

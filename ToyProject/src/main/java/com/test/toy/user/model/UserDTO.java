@@ -18,6 +18,14 @@ public class UserDTO {
 	private String intro;
 	private String regdate;
 	private String ing;
-	
-
+		
 }
+
+
+
+
+
+
+
+
+

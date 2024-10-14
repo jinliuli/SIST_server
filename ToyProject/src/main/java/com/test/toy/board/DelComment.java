@@ -22,13 +22,12 @@ public class DelComment extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-	
 		String cseq = req.getParameter("cseq");
 		
 		BoardDAO dao = BoardDAO.getInstance();
+				
+		int result = dao.delComment(cseq);
 		
-		int result = dao.delCommnet(cseq);
-			
 		resp.setContentType("application/json");
 		
 		JSONObject obj = new JSONObject();
@@ -38,7 +37,15 @@ public class DelComment extends HttpServlet {
 		writer.print(obj.toString());
 		writer.close();
 		
-		
 	}
 
 }
+
+	
+	
+	
+	
+	
+	
+	
+	

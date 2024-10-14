@@ -96,9 +96,10 @@ as
 select 
     tblBoard.*, fnRegdate(regdate) as regtime, 
     (select name from tblUser where id = tblBoard.id) as name,
-    (sysdate - regdate) as isnew
+    (sysdate - regdate) as isnew,
+    (select count(*) from tblComment where bseq = tblBoard.seq) as commentCount
 from tblBoard 
-    order by seq desc;
+    order by thread desc;
 
 select * from vwBoard;
 
@@ -115,3 +116,79 @@ create table tblComment (
 create sequence seqComment;
 
 select * from tblComment;
+
+
+
+
+
+
+select * from tblBoard order by seq desc;
+
+
+
+drop table tblComment;
+drop table tblBoard;
+
+-- 게시판 테이블(+답변 > 계층형)
+create table tblBoard (
+    seq number primary key,                         --글번호(PK)
+    subject varchar2(300) not null,                 --제목
+    content varchar2(4000) not null,                --내용
+    regdate date default sysdate not null,          --날짜
+    readcount number default 0 not null,            --조회수
+    id varchar2(50) not null references tblUser(id),--아이디(FK)
+    thread number not null,                         --답변형(그룹+정렬)
+    depth number not null,                          --답변형(들여쓰기)
+    ing number(1) default 1 not null                --삭제유무
+);
+
+
+
+select * from tblBoard where thread < 현재글thread 
+    and thread > (select nvl(max(thread), 이전새글의thread) from tblBoard 
+              where thread < 현재글thread and depth = 현재글depth);
+
+select * from tblBoard;
+
+
+
+
+
+drop table tblComment;
+drop table tblBoard;
+
+-- 게시판 테이블(+첨부파일)
+create table tblBoard (
+    seq number primary key,                         --글번호(PK)
+    subject varchar2(300) not null,                 --제목
+    content varchar2(4000) not null,                --내용
+    regdate date default sysdate not null,          --날짜
+    readcount number default 0 not null,            --조회수
+    id varchar2(50) not null references tblUser(id),--아이디(FK)
+    thread number not null,                         --답변형(그룹+정렬)
+    depth number not null,                          --답변형(들여쓰기)
+    ing number(1) default 1 not null,               --삭제유무
+    attach varchar2(300) null                       --첨부파일
+);
+
+
+
+
+
+-- 좋아요/싫어요 테이블
+create table tblGoodBad (
+    seq number primary key,                         --PK
+    id varchar2(50) not null references tblUser(id),--아이디(FK)
+    bseq number not null references tblBoard(seq),  --번호(FK)
+    state number(1) not null                        --상태
+);
+create sequence seqGoodBad;
+
+select * from tblGoodBad;
+
+select * from tblcomment;
+
+--drop table tblGoodBad;
+--drop sequence seqGoodBad;
+
+select state, count(*) as cnt from tblGoodBad where bseq = 285 group by state;

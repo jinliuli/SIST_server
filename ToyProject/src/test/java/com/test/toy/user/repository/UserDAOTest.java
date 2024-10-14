@@ -1,8 +1,10 @@
 package com.test.toy.user.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -12,33 +14,30 @@ class UserDAOTest {
 	
 	private static UserDAO dao;
 	
-	//호출하기전 먼저 한번씩 호출하는 JUnit5 어노테이션
 	@BeforeAll
 	static void init() {
 		dao = UserDAO.getInstance();
 	}
 
-	@Disabled //테스트 제외코드 
+	@Disabled
 	@Test
 	void testRegister() {
 		
 		//DAO의 회원 가입 기능
-
 		UserDAO dao = UserDAO.getInstance();
 		
 		UserDTO dto = new UserDTO();
-		dto.setId("hhh");
+		dto.setId("ccc");
 		dto.setPw("1111");
-		dto.setEmail("ccc@naver.com");
+		dto.setEmail("ccc@gmail.com");
 		dto.setName("하하하");
-		dto.setIntro("하하하입니다.");
+		dto.setIntro("안녕하세요. 하하하입니다.");
 		dto.setPic("pic.png");
 		
 		int result = dao.register(dto);
-
+		
 		//assertXXX()
 		assertEquals(1, result);
-		
 		
 	}
 	
@@ -80,7 +79,6 @@ class UserDAOTest {
 		
 	}
 	
-	
 	@Disabled
 	@Test
 	void testLogin3() {
@@ -100,7 +98,6 @@ class UserDAOTest {
 		
 	}
 	
-	
 	@Test
 	void testGetUser() {
 		
@@ -109,10 +106,39 @@ class UserDAOTest {
 		UserDTO dto = dao.getUser(id);
 		
 		assertNotNull(dto);
-		assertEquals(null, dto.getName());
+		assertEquals("홍길동", dto.getName());
 		
 	}
 	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

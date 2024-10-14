@@ -20,15 +20,15 @@ public class Info extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
-
+		
 		UserDAO dao = UserDAO.getInstance();
-
+		
 		UserDTO dto = dao.getUser(session.getAttribute("auth") + "");
 		
 		//자기소개 > 개행 문자 처리
 		dto.setIntro(dto.getIntro().replace("\r\n", "<br>"));
 		
-
+		
 		req.setAttribute("dto", dto);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/info.jsp");
@@ -36,3 +36,11 @@ public class Info extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+
+
+

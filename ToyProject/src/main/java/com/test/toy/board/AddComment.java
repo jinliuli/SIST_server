@@ -3,7 +3,6 @@ package com.test.toy.board;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +22,7 @@ public class AddComment extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		
+
 		String content = req.getParameter("content");
 		String bseq = req.getParameter("bseq");
 		
@@ -34,8 +33,8 @@ public class AddComment extends HttpServlet {
 		dto.setBseq(bseq);
 		dto.setId(session.getAttribute("auth").toString());
 		
-		int result = dao.addCommnet(dto);
-			
+		int result = dao.addComment(dto);
+		
 		resp.setContentType("application/json");
 		
 		JSONObject obj = new JSONObject();
@@ -45,7 +44,15 @@ public class AddComment extends HttpServlet {
 		writer.print(obj.toString());
 		writer.close();
 		
-		
 	}
 
 }
+
+
+
+
+
+
+
+
+

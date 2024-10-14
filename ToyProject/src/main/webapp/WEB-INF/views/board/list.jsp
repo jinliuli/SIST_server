@@ -53,11 +53,38 @@
 			</tr>
 			<c:forEach items="${list}" var="dto">
 			<tr>
-				<td>${dto.seq}</td>
 				<td>
+					<c:if test="${dto.depth == 0}">
+					${dto.seq}	
+					</c:if>
+				</td>
+				<td>
+				
+					<!-- 답변 들여쓰기 -->
+					<c:if test="${dto.depth > 0}">
+					<span class="material-symbols-outlined" style="margin-left: ${dto.depth * 20}px;">subdirectory_arrow_right</span>
+					</c:if>
+										
+					<!-- 제목 -->
+					<c:if test="${dto.ing == 0}">
+					<a href="#!">삭제된 게시물입니다.</a>
+					</c:if>
 					
+					<c:if test="${dto.ing == 1}">
 					<a href="/toy/board/view.do?seq=${dto.seq}&word=${map.word}&column=${map.column}&page=${nowPage}">${dto.subject}</a>
+					</c:if>
 					
+					
+					
+					<!-- 댓글 수 -->
+					<c:if test="${dto.commentCount > 0}">
+					<span class="commentCount">
+						<span class="material-symbols-outlined">chat</span>
+						${dto.commentCount}
+					</span>
+					</c:if>
+					
+					<!-- 최신글 -->
 					<c:if test="${dto.isnew < 1}">
 					<span class="isnew">new</span>
 					</c:if>
@@ -91,13 +118,13 @@
 		
 		<div>
 			<c:if test="${not empty auth}">
-			<button type="button" class="add primary" onclick="location.href='/toy/board/add.do';">쓰기</button>
+			<button type="button" class="add primary" onclick="location.href='/toy/board/add.do?mode=new';">쓰기</button>
 			</c:if>
 		</div>
 	</div>
 	
 	<script>
-	
+		
 		<c:if test="${map.search == 'y'}">
 		$('#searchForm select[name=column]').val('${map.column}');
 		$('#searchForm input[name=word]').val('${map.word}');
@@ -106,6 +133,16 @@
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 

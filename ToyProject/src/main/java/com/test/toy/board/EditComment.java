@@ -24,19 +24,15 @@ public class EditComment extends HttpServlet {
 
 		String content = req.getParameter("content");
 		String seq = req.getParameter("seq");
-		
-		//System.out.println(content);
-		//System.out.println(seq);
-		
-		
+				
 		BoardDAO dao = BoardDAO.getInstance();
 		
 		CommentDTO dto = new CommentDTO();
 		dto.setContent(content);
 		dto.setSeq(seq);
 		
-		int result = dao.editCommnet(dto);
-			
+		int result = dao.editComment(dto);
+		
 		resp.setContentType("application/json");
 		
 		JSONObject obj = new JSONObject();
@@ -45,7 +41,22 @@ public class EditComment extends HttpServlet {
 		PrintWriter writer = resp.getWriter();
 		writer.print(obj.toString());
 		writer.close();
-		
+
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

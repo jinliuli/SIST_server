@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.test.toy.board.model.BoardDTO;
@@ -69,6 +74,8 @@ public class Add extends HttpServlet {
 		String id = session.getAttribute("auth").toString();
 		String mode = multi.getParameter("mode");
 		String attach = multi.getFilesystemName("attach");
+		String tag = multi.getParameter("tag");
+		
 		
 		//2.
 		BoardDAO dao = BoardDAO.getInstance();
@@ -122,6 +129,54 @@ public class Add extends HttpServlet {
 		//dto.setContent(content);
 		
 		int result = dao.add(dto);
+		
+		
+				
+		//해시 태그
+		
+		if (tag != null && !tag.equals("") && !tag.equals("[]")) {
+
+			try {
+				
+				//[{"value":"자바"},{"value":"게시판"},{"value":"태그"}]
+				JSONParser parser = new JSONParser();
+				JSONArray arr = (JSONArray)parser.parse(tag);
+				
+				for (Object obj : arr) {
+					
+					//태그 추출
+					JSONObject tagObj = (JSONObject)obj;
+					String tagName = tagObj.get("value").toString();
+					//System.out.println(tagName);
+					
+					//태그를 DB에 추가
+					if (dao.existHashtag(tagName)) {
+						dao.addHashtag(tagName);
+					}
+					
+					//관계 추가
+					//1. 게시물 번호
+					//2. 해시 태그 번호
+					String bseq = dao.getBseq();
+					String hseq = dao.getHseq(tagName);
+					
+					HashMap<String,String> map = new HashMap<String,String>();
+					map.put("bseq", bseq);
+					map.put("hseq", hseq);
+					
+					dao.addTagging(map);					
+					
+				}
+				
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
+		
 		
 		//3.
 		if (result == 1) {

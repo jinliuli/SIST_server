@@ -88,7 +88,8 @@ window.onload = () => {
 		
 	}
 	
-	loadComment();
+	//모든페이지에서 오류이기때문에 없애준다
+	//setTimeout(loadComment, 200);
 	
 	
 	$('#addComment input[name=content]').keydown((evt)=>{
@@ -167,8 +168,6 @@ window.onload = () => {
 				$('#good').text(0);
 				$('#bad').text(0);
 				
-				
-				
 				$(result.arr).each((index,item)=>{
 					
 					//{cnt: '2', state: '1'}
@@ -189,7 +188,14 @@ window.onload = () => {
 		
 	}
 	
-	loadGoodBad();
+	
+	//게시글 상세보기 페이지에서만 호출하기
+	if (location.href.indexOf('view.do' > -1)) {
+		loadComment();
+		loadGoodBad();
+	}
+	
+	//alert(location.href);
 	
 };//ready
 

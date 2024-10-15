@@ -41,10 +41,8 @@ public class GoodBad extends HttpServlet {
 			result = dao.addGoodBad(map); //신규 등록
 		} else {
 			result = dao.editGoodBad(map); //의견 변경
-			
 		}
-			
-			
+		
 		JSONObject obj = new JSONObject();
 		obj.put("result", result);
 		

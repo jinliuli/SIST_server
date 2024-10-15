@@ -75,6 +75,13 @@
 					</c:if>
 					
 					
+					<!-- 해시 태그 유무 -->
+					<c:if test="${dto.istag > 0}">
+					<span class="isTag">
+						<span class="material-symbols-outlined">sell</span>
+					</span>
+					</c:if>
+					
 					
 					<!-- 댓글 수 -->
 					<c:if test="${dto.commentCount > 0}">
@@ -124,7 +131,7 @@
 	</div>
 	
 	<script>
-		
+	
 		<c:if test="${map.search == 'y'}">
 		$('#searchForm select[name=column]').val('${map.column}');
 		$('#searchForm input[name=word]').val('${map.word}');

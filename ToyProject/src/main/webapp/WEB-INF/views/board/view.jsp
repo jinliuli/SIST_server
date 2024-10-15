@@ -5,7 +5,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<%@include file="/WEB-INF/views/inc/asset.jsp"%>		
+	<%@include file="/WEB-INF/views/inc/asset.jsp"%>
+	<link rel="stylesheet" href="/toy/asset/css/tagify.css">		
 	<style>
 		
 	</style>
@@ -64,6 +65,10 @@
 						<span id="bad">0</span>
 					</div>
 				</td>
+			</tr>
+			<tr>
+				<th>태그</th>
+				<td><input type="text" id="tag" class="full" readonly></td>
 			</tr>
 		</table>
 		
@@ -137,7 +142,8 @@
 		</div>
 	</div>
 	
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef00a9579c4de664a8dcf691494c9b70"></script>
+	<script src="/toy/asset/js/tagify.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7abd542d16ee922f1aadad7967a53f72"></script>
 	<script>
 	
 		const lv = ${empty lv ? 0 : lv};
@@ -169,7 +175,20 @@
 		
 		m1.setImage(mImg);
 		m1.setMap(map);
+				
 		</c:if>
+
+		document.getElementById('tag').value = '${dto.tag.toString().substring(1, dto.tag.toString().length()-1)}';
+		
+		const tagify = new Tagify(document.getElementById('tag'));
+		
+		tagify.on('click', (e) => {
+			//alert(e.detail.data.value);
+			location.href = '/toy/board/list.do?tag=' + e.detail.data.value;
+		});
+		
+		
+		
 	
 	</script>
 </body>

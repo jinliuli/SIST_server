@@ -2,6 +2,7 @@ package com.test.toy.user;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,6 +64,10 @@ public class Login extends HttpServlet {
 			
 			session.setAttribute("lv", result.getLv());
 			session.setAttribute("name", result.getName());
+			
+			//접속 기록
+			//HashMap<String, String> map = new HashMap<String, String>();
+			dao.addLog(id);
 			
 			resp.sendRedirect("/toy/index.do");			
 			

@@ -97,9 +97,16 @@ select
     tblBoard.*, fnRegdate(regdate) as regtime, 
     (select name from tblUser where id = tblBoard.id) as name,
     (sysdate - regdate) as isnew,
-    (select count(*) from tblComment where bseq = tblBoard.seq) as commentCount
+    (select count(*) from tblComment where bseq = tblBoard.seq) as commentCount,
+    (select count(*) from tblBoard b
+        inner join tblTagging t
+            on b.seq = t.bseq
+                inner join tblHashtag h
+                    on h.seq = t.seq
+                        where b.seq = tblBoard.seq) as istag
 from tblBoard 
     order by thread desc;
+
 
 select * from vwBoard;
 
@@ -192,3 +199,150 @@ select * from tblcomment;
 --drop sequence seqGoodBad;
 
 select state, count(*) as cnt from tblGoodBad where bseq = 285 group by state;
+
+
+
+
+
+
+-- 해시태그
+create table tblHashtag (
+    seq number primary key,             --번호(PK)
+    tag varchar2(100) unique not null   --해시태그(UQ)
+);
+create sequence seqHashtag;
+
+-- 연결(관계)
+create table tblTagging (
+    seq number primary key,                         --번호(PK)
+    bseq number not null references tblBoard(seq),  --글번호(FK)
+    hseq number not null references tblHashtag(seq) --해시태그번호(FK)
+);
+create sequence seqTagging;
+
+
+drop table tblTagging;
+drop table tblHashtag;
+drop sequence seqTagging;
+drop sequence seqHashtag;
+
+
+delete tblHashtag where seq = 1;
+
+insert into tblHashtag (seq, tag) values (seqHashtag.nextVal, '자바');
+commit;
+
+
+select * from tblHashtag;
+select * from tblTagging;
+select * from tblBoard;
+
+
+select h.tag from tblBoard b
+    inner join tblTagging t
+        on b.seq = t.bseq
+            inner join tblHashtag h
+                on h.seq = t.hseq
+                    where b.seq = 305;
+                    
+select * from (select a.*, rownum as rnum from vwBoard a %s) b
+inner join tblTagging t
+        on b.seq = t.seq
+            inner join tblHashtag h
+                on h.seq = t.seq
+                    where h.tag = '자바';
+
+
+-- 접속 기록
+create table tblLog (
+    seq number primary key,
+    id varchar2(50) not null references tblUser(id),
+    regdate date default sysdate not null
+);
+
+create sequence seqLog;
+
+select * from tblLog;
+
+
+
+
+
+
+
+--테스트용 데이터
+delete from tblGoodBad;
+delete from tblComment;
+delete from tblTagging;
+delete from tblBoard;
+delete from tblLog;
+
+commit;
+
+--로그인 기록(hong)
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate);--1
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate - 2);
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate - 3);--3
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate - 7);--1
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate - 10);
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate - 12);
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate - 20);--2
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate - 22);--1
+insert into tblLog values (seqLog.nextVal, 'hong', sysdate - 23);
+
+--insert into tblLog values (seqLog.nextVal, 'dog', sysdate - 23);
+--insert into tblLog values (seqLog.nextVal, 'dog', sysdate - 23);
+
+select * from tblLog;
+
+
+--글쓰기(hong)
+desc tblBoard;
+
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 22, default, 'hong', 1000, 0, default, '');
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 20, default, 'hong', 2000, 0, default, '');
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 20, default, 'hong', 3000, 0, default, '');
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 7, default, 'hong', 4000, 0, default, '');
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 3, default, 'hong', 5000, 0, default, '');
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 3, default, 'hong', 6000, 0, default, '');
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 3, default, 'hong', 7000, 0, default, '');
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate, default, 'hong', 8000, 0, default, '');
+
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 5, default, 'dog', 9000, 0, default, '');
+insert into tblBoard values (seqBoard.nextVal, '테스트입니다.', '내용', sysdate - 11, default, 'dog', 10000, 0, default, '');
+
+
+select * from tblBoard;
+
+
+--댓글(hong)
+desc tblComment;
+insert into tblComment values (seqComment.nextVal, '댓글입니다.', sysdate, 'hong', 314);
+insert into tblComment values (seqComment.nextVal, '댓글입니다.', sysdate, 'hong', 314);
+insert into tblComment values (seqComment.nextVal, '댓글입니다.', sysdate - 5, 'hong', 316);
+insert into tblComment values (seqComment.nextVal, '댓글입니다.', sysdate - 22, 'hong', 308);
+insert into tblComment values (seqComment.nextVal, '댓글입니다.', sysdate - 23, 'hong', 307);
+
+select * from tblBoard where id = 'hong' order by seq desc;
+
+select * from tblComment;
+
+commit;
+
+-- 2024년 10월 hong이 무슨 활동
+-- 글을 몇번 썼는지?
+-- 댓글을 몇번 썼는지?
+-- 로그인 언제 했는지?
+-- 태그 몇번 썼는지? X
+
+
+
+select
+    count(*) as cnt,
+    to_char(regdate, 'yyyy-mm-dd') as regdate,
+    (select count(*) from tblBoard where to_char(regdate, 'yyyy-mm-dd') = to_char(l.regdate, 'yyyy-mm-dd') and id ='dog') as bcnt,
+    (select count(*) from tblComment where to_char(regdate, 'yyyy-mm-dd') = to_char(l.regdate, 'yyyy-mm-dd') and id ='dog') as ccnt
+from tblLog l
+    where to_char(l.regdate, 'yyyy-mm') = '2024-10' and l.id = 'dog'
+        group by to_char(regdate, 'yyyy-mm-dd');
+

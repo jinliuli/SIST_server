@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="com.test.toy.user.model.UserDTO"/>
-    <fullyQualifiedTypeName name="com.test.toy.user.repository.UserDAO"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
@@ -31,12 +30,15 @@
     <fullyQualifiedTypeName name="com.drew.metadata.exif.GpsDirectory"/>
     <fullyQualifiedTypeName name="netscape.javascript.JSObject"/>
     <fullyQualifiedTypeName name="com.test.toy.board.repository.BoardDAO"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.util.json.JSONParser"/>
+    <fullyQualifiedTypeName name="org.json.simple.parser.JSONParser"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="com.test.toy.user.repository.UserDAO"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
 </qualifiedTypeNameHistroy>
